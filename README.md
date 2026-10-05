@@ -9,28 +9,6 @@ Built for the Frontend Developer Assignment.
 
 <br>
 
-[![Live](https://img.shields.io/badge/Live-Live%20demo-2EA043?style=for-the-badge&logo=vercel&logoColor=white)](https://fermor-theta-nine.vercel.app)
-[![Status](https://img.shields.io/badge/Status-Project%20complete-2EA043?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/aditya-c7/fermor)
-[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-087EA4?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![Motion](https://img.shields.io/badge/Motion-LazyMotion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://motion.dev)
-
-<br>
-
-[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%20AA%20oriented-1F6FEB?style=for-the-badge&logo=w3c&logoColor=white)](#accessibility)
-[![Responsive](https://img.shields.io/badge/Responsive-375%E2%86%921440%20px-1F6FEB?style=for-the-badge&logo=googlechrome&logoColor=white)](#responsive-behaviour)
-[![Zero config](https://img.shields.io/badge/Zero-config-no%20env%20vars-8250DF?style=for-the-badge&logo=lock&logoColor=white)](#quick-start)
-[![Type safe](https://img.shields.io/badge/Type%20safe-strict-8250DF?style=for-the-badge&logo=typescript&logoColor=white)](#project-structure)
-[![License: MIT](https://img.shields.io/badge/License-MIT-8250DF?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
-
-</div>
-
----
-
----
-
 <div align="center">
 
 ## Contents
@@ -280,8 +258,6 @@ static CSS backgrounds rather than merely hiding them.
 <div align="center">
 
 [![Breakpoints](https://img.shields.io/badge/Verified-375%20%2F%20768%20%2F%201024%20%2F%201440-1F6FEB?style=for-the-badge&logo=tailwindcss&logoColor=white)](#responsive-behaviour)
-[![Overflow](https://img.shields.io/badge/H-overflow-none-2EA043?style=for-the-badge&logo=css3&logoColor=white)](#responsive-behaviour)
-
 </div>
 
 Verified at 375, 768, 1024 and 1440px.
