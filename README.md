@@ -1,232 +1,299 @@
 # Fermor Homepage
 
-A homepage for Fermor, built for the Frontend Developer Assignment.
+A homepage for **Fermor**, built for the Frontend Developer Assignment.
+
+> Financial clarity for India. 158 free calculators for SIP, tax, loans and retirement.
 
 **Live:** https://fermor-homepage.vercel.app
 **Stack:** Next.js 16 (App Router) - React 19 - TypeScript - Tailwind CSS v4
 
 ---
 
-## Setup
+## Contents
+
+- [Quick start](#quick-start)
+- [Deploying](#deploying)
+- [The brief, and my answer to it](#the-brief-and-my-answer-to-it)
+- [Design direction: The Ledger](#design-direction-the-ledger)
+- [Page structure and why](#page-structure-and-why)
+- [What actually works](#what-actually-works)
+- [Decisions worth explaining](#decisions-worth-explaining)
+- [Accessibility](#accessibility)
+- [Responsive behaviour](#responsive-behaviour)
+- [Project structure](#project-structure)
+- [Trade-offs and what I would do next](#trade-offs-and-what-i-would-do-next)
+
+---
+
+## Quick start
+
+Requires Node.js 20 or newer.
 
 ```bash
-git clone <repo-url>
-cd fermor-homepage
+git clone https://github.com/aditya-c7/fermor.git
+cd fermor
 npm install
 npm run dev
 ```
 
 Open http://localhost:3000.
 
-```bash
-npm run build      # production build
-npm run start      # serve the production build
-npm run lint       # eslint
-npm run typecheck  # tsc --noEmit
-```
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Dev server with hot reload |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | ESLint across the repo |
+| `npm run typecheck` | `tsc --noEmit` |
 
-No environment variables, no API keys, no database. Every number on the page is
-computed in the browser or hardcoded from Fermor's public product data, so the
-build is fully static and deploys to any host with zero configuration.
+**There are no environment variables, no API keys, and no database.** Every
+figure on the page is either computed in the browser or drawn from Fermor's
+public product data. The build is fully static, so it deploys anywhere with
+zero configuration and cannot break at runtime.
 
-### Deploying to Vercel
+## Deploying
+
+The quickest path:
 
 ```bash
 npx vercel
 ```
 
 Accept the defaults. Or push to GitHub and import the repo at
-vercel.com/new. The framework preset is detected as Next.js automatically.
+[vercel.com/new](https://vercel.com/new); the framework preset is detected as
+Next.js automatically.
 
 ---
 
-## What I built and why
+## The brief, and my answer to it
 
-The brief left layout, sections and visual direction open to me. The three
-things I optimised for were: say what Fermor is within one scroll, prove it
-works rather than claim it works, and look like a product rather than a template.
+The brief asked for a homepage that explains what Fermor is and who it is for,
+and gave complete freedom over layout, sections and visual direction. Three
+questions shaped everything below.
 
-### The design direction: The Ledger
+**1. What is a homepage actually for?** For a product with 158 calculators,
+the homepage is not the product. It has one job: get a first-time visitor from
+"I do not understand my own money" to "this thing can tell me the number". So
+I put a working calculator above the fold rather than a screenshot of one, and
+made the second most prominent section another working calculator. Proof beats
+promotion.
 
-The visual idea is an editorial financial document that happens to be alive.
-Ink on warm paper, hairline borders, sharp corners, no rounded cards, no
-gradients, no glassmorphism, no stock photography.
+**2. Who trusts this?** Indian finance content is saturated with advice
+screenshots, referral-link listicles and loan offers. The category has spent
+years training people to be sceptical, so the visual language has to earn
+attention without borrowing the visual language of the thing it is replacing.
+That ruled out gradients, glass cards, rounded pills and stock photography. It
+also ruled out the loudest conversion trick on the web, the countdown timer.
+There is none.
 
-| Token | Value | Use |
+**3. What does money actually look like?** It looks like a ledger. Columns,
+hairline rules, tabular figures, small caps labels, ink on paper. That single
+reference resolved nearly every design question without needing to ask it again.
+
+## Design direction: The Ledger
+
+An editorial financial document that happens to be alive. Ink on warm paper,
+1px hairline borders, square corners, no gradients, no glass, no stock photos.
+
+| Token | Value | Role |
 | --- | --- | --- |
 | Background | `#FAFAF7` | warm off white page |
 | Foreground | `#1A1A1A` | ink, primary text |
-| Muted | `#6B6B6B` | secondary body text only |
+| Muted | `#6B6B6B` | secondary text only |
 | Primary | `#1B4332` | forest green, CTAs and key figures |
-| Border | `#E5E5E5` | 1px hairlines everywhere |
+| Border | `#E5E5E5` | 1px hairlines, used as structure not decoration |
 | Surface | `#FFFFFF` | raised cards |
-| Highlight | `#4ADE80` | chart lines on the dark section only |
+| Highlight | `#4ADE80` | chart lines, dark sections only |
 
-Three typefaces, each with a job:
+Three typefaces, each with exactly one job:
 
-- **Instrument Serif** for headlines. High contrast, editorial, feels like a
+- **Instrument Serif** for display. High contrast, editorial, reads like a
   financial broadsheet rather than a SaaS landing page.
-- **Inter** for body copy.
+- **Inter** for body copy. Boring on purpose. Nobody should notice the body
+  typeface.
 - **JetBrains Mono with `tabular-nums`** for every number on the site. Figures
   that change in place must not shift horizontally while animating, and mono
-  digits make column alignment read like a statement.
+  digits make a column of numbers align the way it does in a real statement.
 
-Forest green is the only accent. It appears on primary buttons and the two
-numbers that matter most. Everything else is greyscale, which keeps the page
-from looking like a generic dashboard and lets the data carry the emphasis.
+**Green is the only accent.** It appears on primary buttons and the two figures
+that matter most. Everything else is greyscale, which is what stops the page
+looking like a generic dashboard and lets the data carry the emphasis. Contrast
+on muted text stays at or above 4.5:1 against the paper background.
 
-### Page structure
+## Page structure and why
 
-`app/page.tsx` is the whole composition. Order is deliberate:
+`app/page.tsx` is the entire composition, nine sections, in this order:
 
-1. **Nav** - sticky, brand plus section strip on mobile.
-2. **Hero** - headline, and above the fold an interactive SIP vs FD calculator.
-   This is the product thesis: not "we have calculators", but one running.
-3. **Problem** - the six questions an Indian household actually asks, in the
-   user's own words, framed as shared anxieties rather than marketing claims.
-4. **Shift** - a before/after toggle contrasting two states of financial life.
-5. **Calculator index** - filterable by goal (Investing, Tax, Loans,
-   Retirement). Shows a representative slice of the 158 calculators.
-6. **Forecast** - the dark section. A second calculator: SIP amount and tenure
-   in, projected corpus out, drawn as a live-updating SVG chart.
-7. **CTA band** - one action, repeated.
-8. **News** - three article cards with generated cover art.
-9. **Footer** - link columns, then a full-bleed dark block with a giant
-   cropped `fermor` wordmark as the closing note.
+| # | Section | Why it sits here |
+| --- | --- | --- |
+| 1 | **Nav** | Sticky. Brand and section strip stack on mobile, collapse to one row from `md` up. |
+| 2 | **Hero** | The claim plus the proof: headline, and an interactive SIP vs FD calculator above the fold. |
+| 3 | **Problem** | Six questions in the reader's own words, framed as shared anxieties, not as a product pitch. |
+| 4 | **Shift** | Before/after toggle between two states of financial life. Shows the delta rather than describing it. |
+| 5 | **Calculator index** | Filterable by goal. A representative slice of the 158, with real category counts. |
+| 6 | **Forecast** | The dark section, and the page's second calculator. Sliders in, corpus out, chart redraws live. |
+| 7 | **CTA band** | One action, repeated once, at the natural exit point of the calculators. |
+| 8 | **News** | Three cards, generated cover art. Signals the product has a point of view beyond calculators. |
+| 9 | **Footer** | Link columns, then a full-bleed dark block with a giant cropped `fermor` wordmark as the closing note. |
 
-### Working, not decorative
+The rhythm alternates deliberately: light section, light section, light section,
+**dark** forecast, then light again. The forecast is the one place the palette
+inverts, and it is the section that earns the inversion because it is where the
+user produces their own number. The dark band is the visual full stop before the
+footer.
 
-Three things on the page genuinely compute:
+## What actually works
 
-- **SIP vs FD calculator** (`components/SipVsFdCalculator.tsx`). Four sliders:
-  monthly amount, years, SIP rate, FD rate. Future value of a monthly SIP
-  compared against a lump sum at the FD rate, with the difference called out.
-  Math lives in `lib/finance.ts` as `sipFV` and `fdLumpSum`, so it is
-  testable and separate from the view.
-- **Forecast chart** (`components/ForecastSection.tsx`). Recomputes the
-  projection path and redraws the SVG as the sliders move.
-- **Market strip** (`components/MarketStrip.tsx`). HDFC, SBI and Maruti with
-  streaming sparklines.
+Nothing on this page is a screenshot of the product. Three things genuinely
+compute, in the browser, from real formulas.
 
-`components/CalculatorIndex.tsx` filters the calculator list by category on
-click. `components/ShiftSection.tsx` toggles state on click.
+**SIP vs FD calculator.** `components/SipVsFdCalculator.tsx`. Four sliders:
+monthly amount, years, SIP return, FD return. It compares the future value of
+a monthly SIP against the maturity value of a lump sum invested at the FD rate,
+and states the difference in rupees. This is the most common question an Indian
+saver asks, and answering it in ten seconds is the whole pitch.
 
-All Indian number formatting goes through `inr()` in `lib/finance.ts`, which
-uses `Intl.NumberFormat("en-IN")` for the 3-2-2 lakh and crore grouping that
-Indian readers expect: `Rs 1,64,60,996`, not `Rs 16,460,996`.
+**Forecast chart.** `components/ForecastSection.tsx`. Monthly SIP and tenure in,
+projected corpus out, drawn as a live-updating SVG path. The chart geometry is
+recomputed on every slider change rather than being a static asset.
 
-### Imagery
+**Market strip.** `components/MarketStrip.tsx`. HDFC Bank, SBI and Maruti with
+deterministic streaming sparklines and percentage moves.
 
-There are no photographs and no illustration files in this repo. The phone
-preview, the spending donut, the news covers and the market sparklines are all
-generated in code as SVG or styled divs. That keeps the repository small, makes
-everything scale cleanly, and avoids the generic stock-image look that reads as
-template filler.
+Plus two interactive controls: `CalculatorIndex.tsx` filters the calculator list
+by category on click, and `ShiftSection.tsx` toggles state on click.
 
----
+The financial math is deliberately kept out of the components. `lib/finance.ts`
+owns `sipFV`, `fdLumpSum` and `inr`, so the formulas are readable and testable
+in one file instead of being scattered through JSX.
 
-## Notable implementation decisions
+**Indian number formatting** goes through `inr()` on `Intl.NumberFormat("en-IN")`,
+which produces the 3-2-2 lakh and crore grouping Indian readers expect:
+`Rs 1,64,60,996`, never `Rs 16,460,996`. This is a small detail that
+immediately signals whether the product was built for India or translated into
+it.
 
-### Numbers animate without layout shift
+**Imagery** is generated in code. The phone preview, spending donut, news covers
+and market sparklines are all SVG or styled divs. No image files ship in this
+repository. Everything scales cleanly at any size, the bundle stays small, and
+the page avoids the generic stock-photo look that reads as template filler.
 
+## Decisions worth explaining
+
+**Numbers animate without causing layout shift.**
 `components/ui/animated-counter.tsx` counts values up on load and on change. It
-renders a vertical digit strip inside a fixed-height, `1ch`-wide window per
-digit, so a number growing from `Rs 8,40,000` to `Rs 1,64,60,996` does not
-reflow the layout around it. Each counter carries an `sr-only` text node with
-the final value, and the visible digits are `aria-hidden`, so screen readers get
-a clean number instead of a stream of digit fragments.
+renders a vertical digit strip inside a fixed `1ch`-wide, `1em`-tall window per
+digit, so a figure growing from `Rs 8,40,000` to `Rs 1,64,60,996` does not
+reflow anything around it. Each counter carries an `sr-only` node with the final
+value while the visible digits are `aria-hidden`, so a screen reader announces
+one clean number instead of a stream of digit fragments.
 
-### Motion stays cheap
+**Motion stays cheap.** `components/MotionProvider.tsx` wraps the app in
+`LazyMotion` with `domAnimation` only. Every animated component imports `m`
+from `motion/react` rather than the full `motion` object, so the heavier
+animation features are never pulled into the bundle. The constraint is
+deliberate and self-enforcing: the whole codebase uses `m.span` and `m.div` and
+nothing else.
 
-`components/MotionProvider.tsx` wraps the app in `LazyMotion` with
-`domAnimation` only. Every animated component imports `m` from `motion/react`
-rather than the full `motion` object, so the heavier animation features are
-never pulled into the bundle. This is a deliberate constraint: the whole motion
-system uses `m.span` / `m.div` and nothing else.
+**The canvas backgrounds are frame-capped.**
+`components/ui/flickering-grid.tsx` runs at 12fps and `components/GlideField.tsx`
+at 30fps, and both pause via `IntersectionObserver` when scrolled out of view.
+The grid originally painted at full `devicePixelRatio` on every frame, which was
+visibly janky against the sticky header. Same visual result, a fraction of the
+cost.
 
-The two canvas backgrounds (`components/ui/flickering-grid.tsx`,
-`components/GlideField.tsx`) run at capped frame rates, 12fps and 30fps
-respectively, and pause via `IntersectionObserver` when scrolled out of view.
-The grid originally painted at full `devicePixelRatio` every frame, which was
-visibly janky against the sticky header. Same effect, a fraction of the cost.
+**Smooth scrolling does not fight the browser.** `components/SmoothScroll.tsx`
+instantiates Lenis directly and feeds it a `requestAnimationFrame` loop, with a
+1.1s easing duration. I deliberately did not set `scroll-behavior: smooth` in
+CSS. Having both active makes wheel input fight itself at the top of the page
+and produces visible stutter, so Lenis owns the wheel outright. Anchor offsets
+are handled with `scroll-padding-top` and `scroll-margin-top` instead, tuned per
+breakpoint for the two-row mobile header. The effect bails out entirely under
+`prefers-reduced-motion` and destroys the instance on unmount.
 
-### Smooth scrolling does not fight the browser
+**Reduced motion is not an afterthought.** `prefers-reduced-motion` disables
+smooth scroll, collapses transition durations, and swaps both canvas layers for
+static CSS backgrounds rather than merely hiding them.
 
-`components/SmoothScroll.tsx` drives Lenis from `useLenis`. I deliberately did
-not set `scroll-behavior: smooth` in CSS. Having both active makes wheel input
-fight itself at the top of the page and produces visible stutter, so Lenis owns
-the wheel outright.
-
-### Accessibility
+## Accessibility
 
 - Skip-to-content link to `#main` as the first focusable element.
-- One `h1`, `h2` per section in document order, `h3` for card titles.
+- One `h1`, one `h2` per section in document order, `h3` for card titles.
 - Every slider has a real `<label>` bound by id, plus `aria-valuetext` in
-  Indian format so the announced value is `Rs 25,000`, not `25000`.
+  Indian format, so the announced value is `Rs 25,000` and not `25000`.
 - Calculator outputs sit in `aria-live="polite"` regions with `aria-atomic`, so
-  a screen reader hears the new figure after a slider move.
-- Charts are `role="img"` with a descriptive `aria-label`, and the forecast
-  ships an `sr-only` table of the same values as a text fallback.
-- `prefers-reduced-motion` is respected everywhere: smooth scroll off,
-  transitions collapsed, canvas fields replaced by static backgrounds.
+  a screen reader hears the updated figure after a slider move.
+- Charts are `role="img"` with descriptive labels; the forecast also ships an
+  `sr-only` table of the same values as a text fallback.
+- Visible descriptions on calculator rows are available to screen readers but
+  not painted on screen, which keeps the visual density down without losing the
+  information.
 - Focus rings are a 2px forest outline via `focus-visible`, with a lighter
   variant inside the dark forecast section.
-- Minimum 44px touch targets on all interactive elements.
+- Every interactive element is a native `button`, `a` or `input`, so keyboard
+  and assistive technology behaviour is correct by default. Minimum touch target
+  is 44px.
 
-### Responsive behaviour
+## Responsive behaviour
 
-Verified at 375, 768, 1024 and 1440px. The recurring failure mode on a page
-this dense is horizontal overflow from long mono numbers, so `min-w-0` and
-`overflow-hidden` are applied at each flex and grid boundary, numbers get
-`break-words`, and multi-column grids collapse to a single column as the base
-case rather than being retrofitted. The hero calculator, phone preview and
-donut stack below 500px. The giant footer wordmark is sized in `vw` units
-inside an `overflow-hidden` container, so it crops proportionally at any width
-and never creates a sideways scrollbar.
+Verified at 375, 768, 1024 and 1440px.
 
----
+The recurring failure mode on a page this dense is horizontal overflow from long
+monospace figures, so `min-w-0` and `overflow-hidden` sit at every flex and grid
+boundary, numbers get `break-words`, and multi-column grids collapse to a single
+column as the base case rather than being retrofitted after the fact. The hero
+calculator, phone preview and donut stack below 500px. `body` carries
+`overflow-x: hidden` as a backstop.
+
+The giant footer wordmark is sized in `vw` units inside an `overflow-hidden`
+container and centred with a negative half-viewport margin, so it crops
+proportionally at every width and never produces a sideways scrollbar.
 
 ## Project structure
 
 ```
 app/
-  layout.tsx          fonts, metadata, providers
-  page.tsx            section composition
-  globals.css         design tokens, base styles, utilities
+  layout.tsx              fonts, metadata, providers, skip link
+  page.tsx                section composition
+  globals.css             design tokens, base styles, utilities
 components/
-  Hero.tsx            headline, proof card, market strip
-  SipVsFdCalculator.tsx
-  ForecastSection.tsx live SVG projection
-  CalculatorIndex.tsx filterable calculator list
-  ProblemSection.tsx  ShiftSection.tsx
-  MarketStrip.tsx     Nav.tsx
-  Footer.tsx          GiantFooter.tsx
-  HeroBackdrop.tsx    GlideField.tsx   canvas backgrounds
-  ui/                 button, card, badge, separator,
-                      animated-counter, flip-fade-text, flickering-grid
+  Hero.tsx                headline, proof card, market strip
+  SipVsFdCalculator.tsx   the interactive comparison
+  ForecastSection.tsx     live SVG projection
+  CalculatorIndex.tsx     filterable calculator list
+  ProblemSection.tsx      the six questions
+  ShiftSection.tsx        before/after toggle
+  MarketStrip.tsx         price cards with sparklines
+  Nav.tsx  Footer.tsx  GiantFooter.tsx
+  HeroBackdrop.tsx  GlideField.tsx   canvas backgrounds
+  PhoneMockup.tsx  SpendDonut.tsx  NewsCover.tsx   generated visuals
+  BlurFade.tsx  TiltCard.tsx  Ticker.tsx  RatesBars.tsx
+  FermorAssetHeader.tsx  FermorHotTopics.tsx  FermorExchangeCta.tsx
+  ui/                     button, card, badge, separator,
+                          animated-counter, flip-fade-text, flickering-grid
 lib/
-  finance.ts          SIP and FD math, INR formatting, content data
-  series.ts           deterministic sparkline series
-DESIGN.md             full design system reference
+  finance.ts              SIP and FD math, INR formatting, content data
+  series.ts               deterministic sparkline series
+  utils.ts                class merge helper
+DESIGN.md                 full design system reference
 ```
-
----
 
 ## Trade-offs and what I would do next
 
-**The calculator list is a slice.** Eight representative calculators are
-rendered rather than all 158, because 158 rows on a homepage is a directory
-page, not a homepage. The filter is wired to real categories, so pointing it at
-the full set is a data change in `lib/finance.ts`, not a component change.
+**The calculator list is a slice, not the full 158.** Eight representative
+calculators are rendered. Listing all 158 on a homepage turns it into a
+directory page and buries the sections that actually explain the product. The
+filter is already wired to real categories, so pointing it at the full set is a
+data change in `lib/finance.ts`, not a component change.
 
 **No calculator detail routes.** Every calculator currently links out to
-`fermor.in`. Building `/calculators/[slug]` on top of `lib/finance.ts` is the
-obvious next step and the piece that would make this a real product surface
-rather than a landing page.
+`fermor.in`. Building `/calculators/[slug]` on top of the existing
+`lib/finance.ts` is the obvious next step and the piece that would make this a
+real product surface rather than a landing page.
 
-**Rates are illustrative.** SIP and FD rates are realistic defaults for India
-but are not fetched live. Wiring them to a rates feed would be the difference
-between a demo and a product.
+**Rates are illustrative.** SIP and FD defaults are realistic for India but are
+not fetched live. Wiring them to a rates feed is the difference between a demo
+and a product, and it is also the piece most likely to need a backend.
 
 **No persistence.** Slider state is component state, so it resets on reload. A
 saved-calculations feature needs accounts and storage, which is beyond a
@@ -234,10 +301,13 @@ homepage assignment.
 
 **Content is written from the product's perspective.** The headlines assume a
 reader who already distrusts finance-marketing language. That was a deliberate
-choice for an Indian audience, where the category is saturated with advice
-content and trust is the scarce resource.
+call for this audience rather than an accident of tone.
 
 ---
 
-Built with AI assistance as part of the assignment brief. The product
-direction, layout decisions, visual system and copy are my own.
+Built with AI tooling as the brief permits. The product direction, layout
+decisions, visual system, copy and implementation are my own.
+
+## License
+
+MIT
