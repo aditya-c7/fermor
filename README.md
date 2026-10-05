@@ -1,27 +1,43 @@
+<div align="center">
+
 # Fermor Homepage
 
-A homepage for **Fermor**, built for the Frontend Developer Assignment.
+### Financial clarity for India
 
-> Financial clarity for India. 158 free calculators for SIP, tax, loans and retirement.
+**158 free calculators for SIP, tax, loans and retirement.**
+Built for the Frontend Developer Assignment.
 
-**Live:** https://fermor-homepage.vercel.app
-**Stack:** Next.js 16 (App Router) - React 19 - TypeScript - Tailwind CSS v4
+<br>
+
+[![Live](https://img.shields.io/badge/Live-fermor.in-2EA043?style=for-the-badge&logo=vercel&logoColor=white)](https://fermor-homepage.vercel.app)
+[![Status](https://img.shields.io/badge/Status-Project%20complete-2EA043?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/aditya-c7/fermor)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-087EA4?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Motion](https://img.shields.io/badge/Motion-LazyMotion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://motion.dev)
+
+<br>
+
+[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%20AA%20oriented-1F6FEB?style=for-the-badge&logo=w3c&logoColor=white)](#accessibility)
+[![Responsive](https://img.shields.io/badge/Responsive-375%E2%86%921440%20px-1F6FEB?style=for-the-badge&logo=googlechrome&logoColor=white)](#responsive-behaviour)
+[![Zero config](https://img.shields.io/badge/Zero-config-no%20env%20vars-8250DF?style=for-the-badge&logo=lock&logoColor=white)](#quick-start)
+[![Type safe](https://img.shields.io/badge/Type%20safe-strict-8250DF?style=for-the-badge&logo=typescript&logoColor=white)](#project-structure)
+[![License: MIT](https://img.shields.io/badge/License-MIT-8250DF?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+
+</div>
 
 ---
 
+---
+
+<div align="center">
+
 ## Contents
 
-- [Quick start](#quick-start)
-- [Deploying](#deploying)
-- [The brief, and my answer to it](#the-brief-and-my-answer-to-it)
-- [Design direction: The Ledger](#design-direction-the-ledger)
-- [Page structure and why](#page-structure-and-why)
-- [What actually works](#what-actually-works)
-- [Decisions worth explaining](#decisions-worth-explaining)
-- [Accessibility](#accessibility)
-- [Responsive behaviour](#responsive-behaviour)
-- [Project structure](#project-structure)
-- [Trade-offs and what I would do next](#trade-offs-and-what-i-would-do-next)
+`[ Quick start](#quick-start) &nbsp;&nbsp;` `[ Deploying](#deploying) &nbsp;&nbsp;` `[ Design](#design-direction-the-ledger) &nbsp;&nbsp;` `[ Structure](#page-structure-and-why) &nbsp;&nbsp;` `[ What works](#what-actually-works) &nbsp;&nbsp;` `[ Decisions](#decisions-worth-explaining) &nbsp;&nbsp;` `[ A11y](#accessibility) &nbsp;&nbsp;` `[ Responsive](#responsive-behaviour) &nbsp;&nbsp;` `[ Code](#project-structure) &nbsp;&nbsp;` `[ Trade-offs](#trade-offs-and-what-i-would-do-next)`
+
+</div>
 
 ---
 
@@ -92,6 +108,15 @@ reference resolved nearly every design question without needing to ask it again.
 
 ## Design direction: The Ledger
 
+<div align="center">
+
+[![Style](https://img.shields.io/badge/Style-The%20Ledger-1A1A1A?style=for-the-badge&logo=readthedocs&logoColor=white)](#design-direction-the-ledger)
+[![Palette](https://img.shields.io/badge/Palette-forest%20%231B4332-2EA043?style=for-the-badge&logo=simpleicons&logoColor=white)](#design-direction-the-ledger)
+[![Gradients](https://img.shields.io/badge/Gradients-none-8250DF?style=for-the-badge&logo=image&logoColor=white)](https://github.com/aditya-c7/fermor)
+[![Photography](https://img.shields.io/badge/Stock%20photos-zero-8250DF?style=for-the-badge&logo=camera&logoColor=white)](https://github.com/aditya-c7/fermor)
+
+</div>
+
 An editorial financial document that happens to be alive. Ink on warm paper,
 1px hairline borders, square corners, no gradients, no glass, no stock photos.
 
@@ -143,6 +168,14 @@ user produces their own number. The dark band is the visual full stop before the
 footer.
 
 ## What actually works
+
+<div align="center">
+
+[![Math](https://img.shields.io/badge/Math-live%20in%20browser-2EA043?style=for-the-badge&logo=javascript&logoColor=white)](#what-actually-works)
+[![Interactive](https://img.shields.io/badge/Interactive-3%20calculators-1F6FEB?style=for-the-badge&logo=sliders&logoColor=white)](#what-actually-works)
+[![Assets](https://img.shields.io/badge/Assets-0%20image%20files-8250DF?style=for-the-badge&logo=image&logoColor=white)](https://github.com/aditya-c7/fermor)
+
+</div>
 
 Nothing on this page is a screenshot of the product. Three things genuinely
 compute, in the browser, from real formulas.
@@ -217,6 +250,14 @@ static CSS backgrounds rather than merely hiding them.
 
 ## Accessibility
 
+<div align="center">
+
+[![A11y](https://img.shields.io/badge/A11y-WCAG%20AA%20oriented-2EA043?style=for-the-badge&logo=w3c&logoColor=white)](#accessibility)
+[![ARIA](https://img.shields.io/badge/ARIA-live%20regions-1F6FEB?style=for-the-badge&logo=accessibility&logoColor=white)](#accessibility)
+[![Touch](https://img.shields.io/badge/Touch-44px%20minimum-8250DF?style=for-the-badge&logo=smartphone&logoColor=white)](#accessibility)
+
+</div>
+
 - Skip-to-content link to `#main` as the first focusable element.
 - One `h1`, one `h2` per section in document order, `h3` for card titles.
 - Every slider has a real `<label>` bound by id, plus `aria-valuetext` in
@@ -235,6 +276,13 @@ static CSS backgrounds rather than merely hiding them.
   is 44px.
 
 ## Responsive behaviour
+
+<div align="center">
+
+[![Breakpoints](https://img.shields.io/badge/Verified-375%20%2F%20768%20%2F%201024%20%2F%201440-1F6FEB?style=for-the-badge&logo=tailwindcss&logoColor=white)](#responsive-behaviour)
+[![Overflow](https://img.shields.io/badge/H-overflow-none-2EA043?style=for-the-badge&logo=css3&logoColor=white)](#responsive-behaviour)
+
+</div>
 
 Verified at 375, 768, 1024 and 1440px.
 
@@ -279,6 +327,13 @@ DESIGN.md                 full design system reference
 ```
 
 ## Trade-offs and what I would do next
+
+<div align="center">
+
+[![Scope](https://img.shields.io/badge/Scope-Homepage%20assignment-1F6FEB?style=for-the-badge&logo=target&logoColor=white)](#trade-offs-and-what-i-would-do-next)
+[![Status](https://img.shields.io/badge/Status-Submission%20ready-2EA043?style=for-the-badge&logo=checkcircle&logoColor=white)](https://github.com/aditya-c7/fermor)
+
+</div>
 
 **The calculator list is a slice, not the full 158.** Eight representative
 calculators are rendered. Listing all 158 on a homepage turns it into a
