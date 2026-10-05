@@ -9,7 +9,7 @@ Built for the Frontend Developer Assignment.
 
 <br>
 
-[![Live](https://img.shields.io/badge/Live-fermor.in-2EA043?style=for-the-badge&logo=vercel&logoColor=white)](https://fermor-homepage.vercel.app)
+[![Live](https://img.shields.io/badge/Live-Live%20demo-2EA043?style=for-the-badge&logo=vercel&logoColor=white)](https://fermor-theta-nine.vercel.app)
 [![Status](https://img.shields.io/badge/Status-Project%20complete-2EA043?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/aditya-c7/fermor)
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-087EA4?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
