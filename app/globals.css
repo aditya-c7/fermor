@@ -1,26 +1,245 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #FAFAF7;
+  --color-foreground: #1A1A1A;
+  --color-primary: #1B4332;
+  --color-muted: #6B6B6B;
+  --color-border: #E5E5E5;
+  --color-surface: #FFFFFF;
+
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-instrument), serif;
+  --font-mono: var(--font-jetbrains), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Sticky header is two rows below md (brand row + scrollable section
+   strip = ~121px), one row from md up (~65px). Anchor targets must clear
+   whichever is in force or the heading lands under the bar. */
+html {
+  scroll-padding-top: 8rem;
+}
+
+[id] {
+  scroll-margin-top: 8rem;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #1B4332;
+  color: #FAFAF7;
+}
+
+*:focus-visible {
+  outline: 2px solid #1B4332;
+  outline-offset: 2px;
+}
+
+.tnum, [data-numeric] {
+  font-variant-numeric: tabular-nums;
+}
+
+.caption {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+input[type="range"].slider,
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #E5E5E5;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -9px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: #E5E5E5;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #1A1A1A;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #1B4332;
+  outline-offset: 2px;
+}
+
+input[type="range"]:focus-visible::-moz-range-thumb {
+  outline: 2px solid #1B4332;
+  outline-offset: 2px;
+}
+
+/* Dark forecast section - keep focus legible on ink background */
+#forecast *:focus-visible {
+  outline-color: #FAFAF7;
+}
+
+/* Dark forecast section - keep track and thumb legible on ink background */
+#forecast input[type="range"]::-webkit-slider-runnable-track {
+  background: rgba(250, 250, 247, 0.25);
+}
+
+#forecast input[type="range"]::-moz-range-track {
+  background: rgba(250, 250, 247, 0.25);
+}
+
+#forecast input[type="range"]::-webkit-slider-thumb {
+  background: #FAFAF7;
+}
+
+#forecast input[type="range"]::-moz-range-thumb {
+  background: #FAFAF7;
+}
+
+#forecast input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #FAFAF7;
+  outline-offset: 2px;
+}
+
+#forecast input[type="range"]:focus-visible::-moz-range-thumb {
+  outline: 2px solid #FAFAF7;
+  outline-offset: 2px;
+}
+
+.line-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.line-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: #1B4332;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.line-link:hover::after {
+  transform: scaleX(1);
+}
+
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee {
+  animation: marquee-x 28s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+}
+
+.dot-grid {
+  background-image: radial-gradient(#1A1A1A 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.dot-grid-light {
+  background-image: radial-gradient(rgba(250,250,247,0.22) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.ledger-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 39px,
+    #E5E5E5 39px,
+    #E5E5E5 40px
+  );
+}
+
+.spotlight {
+  background: radial-gradient(520px 420px at 70% 10%, rgba(27,67,50,0.10), transparent 65%);
+}
+
+/* Ledger charts - streaming feed + marker pulse (minimal extract, Ledger-safe) */
+@keyframes ledger-stream {
+  to {
+    transform: translateX(calc(var(--stream-w, 580) * -1px));
+  }
+}
+@keyframes ledger-marker-pulse {
+  0%, 100% { opacity: 0.18; transform: scale(1); }
+  50% { opacity: 0.42; transform: scale(1.35); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ledger-stream {
+    animation: ledger-stream var(--stream-dur, 20s) linear infinite;
+  }
+  .ledger-marker-pulse {
+    animation: ledger-marker-pulse 2.6s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
