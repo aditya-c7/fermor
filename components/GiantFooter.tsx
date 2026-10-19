@@ -31,7 +31,7 @@ export default function GiantFooter() {
         vw sizing = inherently responsive, no breakpoints needed, no x-scroll.
       */}
       <div aria-hidden="true" className="relative mt-2 w-full max-w-full select-none overflow-hidden rounded-none sm:mt-4">
-        <p className="-ml-[50vw] w-[200vw] translate-y-[14%] whitespace-nowrap bg-gradient-to-b from-[#F4F4F4] via-[#9C9C9C] to-[#232323] bg-clip-text text-center font-sans text-[41vw] font-extrabold leading-[0.75] tracking-[-0.045em] text-transparent">
+        <p className="w-full translate-y-[8%] whitespace-nowrap bg-gradient-to-b from-[#F4F4F4] via-[#9C9C9C] to-[#232323] bg-clip-text text-center font-sans text-[18.5vw] font-extrabold leading-[0.85] tracking-[-0.045em] text-transparent px-2">
           fermor
         </p>
       </div>
